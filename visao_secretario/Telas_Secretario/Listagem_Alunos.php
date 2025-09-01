@@ -1,6 +1,8 @@
 <?php
 // Define a constante que aponta para a pasta raiz do projeto
-define('PROJECT_ROOT', dirname(dirname(__DIR__)));
+if (!defined('PROJECT_ROOT')) {
+    define('PROJECT_ROOT', dirname(dirname(__DIR__)));
+}
 
 // Define o título e o ícone da página
 $page_title = 'Cadastro de Alunos';
@@ -24,8 +26,7 @@ if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
 }
 
 // --- LÓGICA DE CONSULTA CORRIGIDA ---
-// Seleciona apenas as colunas que existem na sua tabela
-$sql = "SELECT a.ID_Aluno, a.Nome, a.CPF, a.Contato_responsavel, t.Nome_Turma 
+$sql = "SELECT a.ID_Aluno, a.Nome, a.CPF, a.Contato_responsavel, a.Endereco, t.Nome_Turma 
         FROM Alunos a 
         LEFT JOIN Turmas t ON a.Turmas_ID_Turma = t.ID_Turma 
         ORDER BY a.Nome ASC";
@@ -56,6 +57,7 @@ if (!$resultado) {
                 <th>Nome do Aluno</th>
                 <th>CPF</th>
                 <th>Contato do Responsável</th>
+                <th>Endereço</th>
                 <th>Turma</th>
                 <th>Ações</th>
             </tr>
@@ -65,8 +67,9 @@ if (!$resultado) {
                 <?php while($aluno = $resultado->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($aluno['Nome']); ?></td>
-                        <td><?php echo htmlspecialchars($aluno['CPF'] ?? 'Não informado'); ?></td>
+                        <td><?php echo htmlspecialchars($aluno['CPF'] ?? 'N/D'); ?></td>
                         <td><?php echo htmlspecialchars($aluno['Contato_responsavel']); ?></td>
+                        <td><?php echo htmlspecialchars($aluno['Endereco'] ?? 'N/D'); ?></td>
                         <td><?php echo htmlspecialchars($aluno['Nome_Turma'] ?? 'Sem turma'); ?></td>
                         <td class="action-buttons">
                             <a href="Cadastro_Alunos.php?id=<?php echo $aluno['ID_Aluno']; ?>" class="btn-icon" title="Editar"><i class="fas fa-edit"></i></a>
@@ -75,7 +78,7 @@ if (!$resultado) {
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
-                <tr><td colspan="5">Nenhum aluno cadastrado.</td></tr>
+                <tr><td colspan="6">Nenhum aluno cadastrado.</td></tr>
             <?php endif; ?>
         </tbody>
     </table>
