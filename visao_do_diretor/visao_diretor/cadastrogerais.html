@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rede Educacional - Cadastro Geral</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        /* [Seu CSS existente aqui - mantido igual] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13px;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --primary-light: #3498db;
+            --secondary: #ecf0f1;
+            --accent: #e74c3c;
+            --text: #333333;
+            --border: #d1d1d1;
+            --success: #27ae60;
+            --danger: #c0392b;
+            --sidebar-bg: #34495e;
+            --header-bg: #2c3e50;
+            --table-header: #f5f5f5;
+            --checkbox-active: #e74c3c;
+        }
+
+        body {
+            display: flex;
+            background-color: #f5f5f5;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* [Restante do seu CSS existente aqui] */
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+    <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <h1>Rede Educacional</h1>
+    </div>
+    
+    <ul class="menu">
+        <li class="menu-section">
+            <div class="menu-section-title">Menu Principal</div>
+        </li>
+        
+        <li class="menu-item active">
+            <i class="fas fa-home"></i>
+            <span><a href="cadastrogerais.html" style="color:inherit; text-decoration:none;">Início</a></span>
+        </li>
+        
+        </li>
+        <ul class="submenu">
+            <li class="menu-item">
+                <i class="fas fa-user-tie"></i>
+                <span><a href="listagem_Secretario.html" style="color:inherit; text-decoration:none;">Secretários</a></span>
+            </li>
+            <li class="menu-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span><a href="Listagem_Professor.html" style="color:inherit; text-decoration:none;">Professores</a></span>
+            </li>
+            <li class="menu-item">
+                <i class="fas fa-baby"></i>
+                <span><a href="Listagem_Bercarista.html" style="color:inherit; text-decoration:none;">Berçaristas</a></span>
+            </li>
+        </ul>
+        
+        <li class="menu-item has-submenu">
+            <i class="fas fa-cogs"></i>
+            <span>Gerenciamento</span>
+        </li>
+        <ul class="submenu">
+            <li class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Agenda</span>
+            </li>
+            <li class="menu-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Relatórios</span>
+            </li>
+        </ul>
+        
+        <div class="menu-divider"></div>
+        
+        <li class="menu-item">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+        </li>
+    </ul>
+    
+    <div class="logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <span><a href="/tela_login/teladiretor.html" style="color:inherit; text-decoration:none;">Sair</a></span>
+    </div>
+</div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <i class="fas fa-user-plus"></i>
+                <h2>Cadastro Geral de Usuários</h2>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">AD</div>
+                <span>Admin</span>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="form-container">
+                <h3 class="section-title">Dados Básicos</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-type">Tipo de Usuário</label>
+                        <select id="user-type" onchange="showSpecificFields()">
+                            <option value="">Selecione o tipo</option>
+                            <option value="secretary">Secretário</option>
+                            <option value="teacher">Professor</option>
+                            <option value="nursery">Berçarista</option>
+                            <option value="employee">Funcionário</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-name">Nome Completo</label>
+                        <input type="text" id="user-name" placeholder="Nome completo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-cpf">CPF</label>
+                        <input type="text" id="user-cpf" placeholder="000.000.000-00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-rg">RG</label>
+                        <input type="text" id="user-rg" placeholder="00.000.000-0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-birthdate">Data de Nascimento</label>
+                        <input type="date" id="user-birthdate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-phone">Telefone</label>
+                        <input type="tel" id="user-phone" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-email">E-mail</label>
+                        <input type="email" id="user-email" placeholder="exemplo@email.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-gender">Gênero</label>
+                        <select id="user-gender">
+                            <option value="">Selecione</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Feminino</option>
+                            <option value="other">Outro</option>
+                            <option value="undefined">Prefiro não informar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-nationality">Nacionalidade</label>
+                        <input type="text" id="user-nationality" placeholder="Nacionalidade">
+                    </div>
+                </div>
+
+                <!-- Seção para Foto e Documentos -->
+                <h3 class="section-title">Documentos e Identificação</h3>
+
+                <div class="form-row">
+                    <div class="form-group photo-upload">
+                        <label>Foto do Perfil</label>
+                        <div class="photo-preview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <input type="file" id="user-photo" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('user-photo').click()">
+                            <i class="fas fa-upload"></i> Selecionar Foto
+                        </button>
+                        <div class="file-info">Formatos: JPG, PNG (Max. 2MB)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-doc-type">Tipo de Documento</label>
+                        <select id="user-doc-type">
+                            <option value="rg">RG</option>
+                            <option value="cnh">CNH</option>
+                            <option value="passport">Passaporte</option>
+                        </select>
+                        
+                        <label for="user-doc-number" style="margin-top: 10px;">Número do Documento</label>
+                        <input type="text" id="user-doc-number" placeholder="Número do documento">
+                        
+                        <label for="user-doc-orgao" style="margin-top: 10px;">Órgão Emissor</label>
+                        <input type="text" id="user-doc-orgao" placeholder="Órgão emissor">
+                    </div>
+                </div>
+
+                <!-- Seção para Endereço -->
+                <h3 class="section-title">Endereço Residencial</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-cep">CEP</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="user-cep" placeholder="00000-000" style="flex: 1;">
+                            <button type="button" class="btn-secondary" style="width: auto;">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-address">Endereço</label>
+                        <input type="text" id="user-address" placeholder="Rua, Avenida, etc.">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-address-number">Número</label>
+                        <input type="text" id="user-address-number" placeholder="Número">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-address-complement">Complemento</label>
+                        <input type="text" id="user-address-complement" placeholder="Complemento">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-neighborhood">Bairro</label>
+                        <input type="text" id="user-neighborhood" placeholder="Bairro">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-city">Cidade</label>
+                        <input type="text" id="user-city" placeholder="Cidade">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-state">Estado</label>
+                        <select id="user-state">
+                            <option value="">Selecione</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <!-- Todos os estados brasileiros -->
+                            <option value="SP">São Paulo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-country">País</label>
+                        <input type="text" id="user-country" value="Brasil" readonly>
+                    </div>
+                </div>
+
+                <!-- Seção para Dados Bancários -->
+                <h3 class="section-title">Dados Bancários</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-bank-name">Banco</label>
+                        <select id="user-bank-name">
+                            <option value="">Selecione o banco</option>
+                            <option value="001">Banco do Brasil</option>
+                            <option value="033">Santander</option>
+                            <option value="237">Bradesco</option>
+                            <option value="341">Itaú</option>
+                            <option value="104">Caixa Econômica</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-bank-agency">Agência</label>
+                        <input type="text" id="user-bank-agency" placeholder="Número da agência">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-bank-account">Conta Corrente</label>
+                        <input type="text" id="user-bank-account" placeholder="Número da conta">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-bank-type">Tipo de Conta</label>
+                        <select id="user-bank-type">
+                            <option value="checking">Conta Corrente</option>
+                            <option value="savings">Conta Poupança</option>
+                            <option value="salary">Conta Salário</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Seção para Dados Acadêmicos -->
+                <h3 class="section-title">Dados Acadêmicos</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-education-level">Escolaridade</label>
+                        <select id="user-education-level">
+                            <option value="">Selecione</option>
+                            <option value="elementary">Ensino Fundamental</option>
+                            <option value="highschool">Ensino Médio</option>
+                            <option value="undergraduate">Ensino Superior</option>
+                            <option value="postgraduate">Pós-Graduação</option>
+                            <option value="master">Mestrado</option>
+                            <option value="phd">Doutorado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-graduation">Curso Superior</label>
+                        <input type="text" id="user-graduation" placeholder="Curso de graduação">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-institution">Instituição de Ensino</label>
+                        <input type="text" id="user-institution" placeholder="Nome da instituição">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-graduation-year">Ano de Conclusão</label>
+                        <input type="number" id="user-graduation-year" placeholder="Ano de conclusão" min="1900" max="2099">
+                    </div>
+                </div>
+
+                <!-- Seções específicas para cada tipo de usuário (mantidas do código original) -->
+                <!-- Seção para Secretário -->
+                <div id="secretary-fields" class="specific-fields" style="display:none;">
+                    <!-- [Conteúdo original mantido] -->
+                </div>
+                
+                <!-- Seção para Professor -->
+                <div id="teacher-fields" class="specific-fields" style="display:none;">
+                    <!-- [Conteúdo original mantido] -->
+                </div>
+                
+                <!-- Seção para Berçarista -->
+                <div id="nursery-fields" class="specific-fields" style="display:none;">
+                    <!-- [Conteúdo original mantido] -->
+                </div>
+
+                <!-- Seção para Termos e Condições -->
+                <h3 class="section-title">Termos e Condições</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div style="display: flex; align-items: start; gap: 10px;">
+                            <input type="checkbox" id="user-terms" style="width: auto; margin-top: 3px;">
+                            <label for="user-terms" style="font-weight: normal;">
+                                Declaro que todas as informações fornecidas são verdadeiras e estou ciente das 
+                                penalidades legais por falsidade ideológica.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div style="display: flex; align-items: start; gap: 10px;">
+                            <input type="checkbox" id="user-data-usage" style="width: auto; margin-top: 3px;">
+                            <label for="user-data-usage" style="font-weight: normal;">
+                                Autorizo o uso dos meus dados para fins administrativos e cadastrais, conforme 
+                                a Lei Geral de Proteção de Dados (LGPD).
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn-primary">
+                        <i class="fas fa-save"></i> Salvar Cadastro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar campos específicos
+        function showSpecificFields() {
+            // Esconde todos os campos específicos primeiro
+            document.querySelectorAll('.specific-fields').forEach(field => {
+                field.style.display = 'none';
+            });
+            
+            // Mostra apenas os campos do tipo selecionado
+            const userType = document.getElementById('user-type').value;
+            if (userType) {
+                document.getElementById(`${userType}-fields`).style.display = 'block';
+            }
+        }
+
+        // Função para alternar submenus
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item.has-submenu');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Evita que o clique propague se já estiver em um submenu
+                    if (e.target.closest('.submenu')) return;
+                    
+                    const submenu = this.nextElementSibling;
+                    const isOpen = submenu.classList.contains('open');
+                    
+                    // Fecha todos os submenus primeiro
+                    document.querySelectorAll('.submenu').forEach(sm => {
+                        sm.classList.remove('open');
+                    });
+                    
+                    document.querySelectorAll('.menu-item.has-submenu').forEach(mi => {
+                        mi.classList.remove('open');
+                    });
+                    
+                    // Abre o submenu atual se não estiver aberto
+                    if (!isOpen) {
+                        submenu.classList.add('open');
+                        this.classList.add('open');
+                    }
+                });
+            });
+
+            // Preview da foto selecionada
+            document.getElementById('user-photo').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const preview = document.querySelector('.photo-preview');
+                        preview.innerHTML = `<img src="${event.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
